@@ -1,5 +1,6 @@
 package edu.csci4300.menu;
 
+import edu.csci4300.menu.dao.ItemRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

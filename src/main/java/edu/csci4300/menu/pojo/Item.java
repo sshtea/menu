@@ -1,4 +1,4 @@
-package edu.csci4300.menu;
+package edu.csci4300.menu.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
