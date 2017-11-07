@@ -1,6 +1,7 @@
 package edu.csci4300.menu;
 
 import edu.csci4300.menu.dao.ItemRepository;
+import edu.csci4300.menu.pojo.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,9 +23,9 @@ public class MenuApplication {
 	@Bean
     CommandLineRunner test(ItemRepository itemRepository){
 	    return (args) -> {
-//            Item item = new Item();
-//            item.setName("Item1").setDescription("An Item").setPrice(154);
-//            itemRepository.save(item);
+            Item item = new Item();
+            item.setName("Item1").setDescription("An Item").setPrice(154);
+            itemRepository.save(item);
             System.out.println(itemRepository.findAll());
         };
     }

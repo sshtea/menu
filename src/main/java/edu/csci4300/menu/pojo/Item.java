@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue
-    private Long itemId;
+    private Long id;
     private String name;
     private int price;
     private String description;
@@ -17,16 +17,16 @@ public class Item {
 
     }
 
-    public Item(Long itemId, String name, int price, String description) {
+    public Item(Long id, String name, int price, String description) {
         super();
-        this.itemId = itemId;
+        this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
     }
 
-    public Long getItemId() {
-        return itemId;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -60,7 +60,7 @@ public class Item {
     public String toString(){
         String string = "";
         string += "{";
-        string += "\"itemId\":" + itemId + ", ";
+        string += "\"itemId\":" + id + ", ";
         string += "\"name\":" + "\"" + name + "\", ";
         string += "\"price\":" + price + ", ";
         string += "\"description\":" + "\"" + description +"\"";
