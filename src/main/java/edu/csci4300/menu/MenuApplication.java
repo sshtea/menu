@@ -20,13 +20,13 @@ public class MenuApplication {
 		SpringApplication.run(MenuApplication.class, args);
 	}
 
-	@Bean
-    CommandLineRunner test(ItemRepository itemRepository){
-	    return (args) -> {
-            Item item = new Item();
-            item.setName("Item1").setDescription("An Item").setPrice(154);
-            itemRepository.save(item);
-            System.out.println(itemRepository.findAll());
-        };
-    }
+//	@Bean
+//    CommandLineRunner test(ItemRepository itemRepository){
+//	    return (args) -> {
+//            Item item = new Item();
+//            item.setName("Item1").setDescription("An Item").setPrice(154);
+//            itemRepository.save(item);
+//            System.out.println(itemRepository.findAll());
+//        };
+//    }
 }

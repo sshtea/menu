@@ -29,6 +29,11 @@ public class Item {
         return id;
     }
 
+    public Item setId(long id){
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
         return name;
     }
@@ -60,7 +65,7 @@ public class Item {
     public String toString(){
         String string = "";
         string += "{";
-        string += "\"itemId\":" + id + ", ";
+        string += "\"id\":" + id + ", ";
         string += "\"name\":" + "\"" + name + "\", ";
         string += "\"price\":" + price + ", ";
         string += "\"description\":" + "\"" + description +"\"";
