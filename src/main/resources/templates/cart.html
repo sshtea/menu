@@ -1,11 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-    <title>Items</title>
+    <title>Cart</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Items</h1>
+<h1>Cart</h1>
 
 <table>
     <tr>
@@ -15,11 +15,11 @@
     </tr>
     <tr th:each="item : ${items}">
         <form action="#" th:action="@{/cart}" method="post">
-            <input type="hidden" th:value="${item.id}" id="id" name="id"/>
+                <input type="hidden" th:value="${item.id}" id="id" name="id"/>
             <td th:text="${item.name}"></td>
             <td th:text="${item.description}"></td>
             <td th:text="${item.price}"></td>
-            <td><input type="submit" name="action" value="add"/></td>
+            <td><input type="submit" name="action" value="remove"/></td>
         </form>
     </tr>
 </table>
