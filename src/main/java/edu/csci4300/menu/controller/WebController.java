@@ -14,12 +14,16 @@ import java.util.List;
 
 @Controller
 public class WebController {
-
     @Autowired
     private ItemRepository itemRepository;
 
     @Autowired
     private Cart cart;
+
+    @RequestMapping("/login")
+    public String login(Model model){
+        return "login";
+    }
 
     @RequestMapping("/items")
     public String items(Model model){
