@@ -1,7 +1,9 @@
 package edu.csci4300.menu;
 
+import edu.csci4300.menu.dao.CustomerRepository;
 import edu.csci4300.menu.dao.ItemRepository;
 import edu.csci4300.menu.dao.PurchaseRepository;
+import edu.csci4300.menu.pojo.Customer;
 import edu.csci4300.menu.pojo.Item;
 import edu.csci4300.menu.pojo.Purchase;
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -31,19 +34,25 @@ public class MenuApplication {
 	}
 
 	@Bean
-	CommandLineRunner test(ItemRepository itemRepository, PurchaseRepository purchaseRepository){
+	CommandLineRunner test(ItemRepository itemRepository, PurchaseRepository purchaseRepository, CustomerRepository customerRepository){
 	    return (args) -> {
             Item item = new Item();
             item.setName("Item1").setDescription("An Item").setPrice(154);
             itemRepository.save(item);
+			item = new Item();
+			item.setName("Item2").setDescription("An Item for item 2").setPrice(20);
 
-            Purchase purchase = new Purchase();
-            Set<Item> items = new HashSet<>();
-            items.add(item);
-			purchase.setItems(items);
+			List<Item> itemList = itemRepository.findAll();
+
+			Customer customer = new Customer();
+			customer.setName("Test User 1");
+			customerRepository.save(customer);
+
+			Purchase purchase = new Purchase();
+			purchase.setItems(itemList);
+			purchase.setCustomer(customer);
 
 			purchaseRepository.save(purchase);
-
         };
     }
 }

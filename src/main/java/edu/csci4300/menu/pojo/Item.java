@@ -2,6 +2,7 @@ package edu.csci4300.menu.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,14 +16,14 @@ public class Item implements Serializable{
     private String description;
 
     @ManyToMany(mappedBy = "items")
-    private Set<Purchase> purchases;
+    private List<Purchase> purchases;
 
 
     public Item(){
 
     }
 
-    public Item(Long id, String name, int price, String description, Set<Purchase> purchases) {
+    public Item(Long id, String name, int price, String description, List<Purchase> purchases) {
         super();
         this.id = id;
         this.name = name;
@@ -72,11 +73,11 @@ public class Item implements Serializable{
         return this;
     }
 
-    public Set<Purchase> getPurchases() {
+    public List<Purchase> getPurchases() {
         return purchases;
     }
 
-    public Item setPurchases(Set<Purchase> purchases) {
+    public Item setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
         return this;
     }
