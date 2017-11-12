@@ -1,4 +1,4 @@
-package edu.csci4300.menu;
+package edu.csci4300.menu.component;
 
 import edu.csci4300.menu.pojo.Item;
 import org.springframework.context.annotation.Scope;

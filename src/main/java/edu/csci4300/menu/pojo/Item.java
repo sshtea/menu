@@ -1,9 +1,9 @@
 package edu.csci4300.menu.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
+
 
 @Entity
 public class Item implements Serializable{
@@ -14,16 +14,26 @@ public class Item implements Serializable{
     private int price;
     private String description;
 
+    @ManyToMany(mappedBy = "items")
+    private Set<Purchase> purchases;
+
+
     public Item(){
 
     }
 
-    public Item(Long id, String name, int price, String description) {
+    public Item(Long id, String name, int price, String description, Set<Purchase> purchases) {
         super();
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.purchases = purchases;
+    }
+
+    public Item setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public Long getId() {
@@ -59,6 +69,15 @@ public class Item implements Serializable{
 
     public Item setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Set<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public Item setPurchases(Set<Purchase> purchases) {
+        this.purchases = purchases;
         return this;
     }
 

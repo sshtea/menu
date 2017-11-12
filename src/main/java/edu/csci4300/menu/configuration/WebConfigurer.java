@@ -1,4 +1,4 @@
-package edu.csci4300.menu;
+package edu.csci4300.menu.configuration;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

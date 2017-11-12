@@ -1,4 +1,4 @@
-package edu.csci4300.menu;
+package edu.csci4300.menu.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
