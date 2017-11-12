@@ -3,14 +3,17 @@ package edu.csci4300.menu.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
 public class Purchase implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
+    private Date date;
+
 
     @ManyToMany
     @JoinTable(
@@ -25,11 +28,14 @@ public class Purchase implements Serializable{
     private Customer customer;
 
     public Purchase() {
+        items = new ArrayList<>();
+        date = new Date();
     }
 
-    public Purchase(Long id, List<Item> items) {
+    public Purchase(Long id, List<Item> items, Date date) {
         this.id = id;
         this.items = items;
+        this.date = date;
     }
 
     public Long getId() {
@@ -56,6 +62,15 @@ public class Purchase implements Serializable{
 
     public Purchase setCustomer(Customer customer) {
         this.customer = customer;
+        return this;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Purchase setDate(Date date) {
+        this.date = date;
         return this;
     }
 }
