@@ -5,6 +5,8 @@ import org.springframework.web.context.request.RequestContextListener;
 
 import javax.servlet.annotation.WebListener;
 
+/* Enables the Request Context Listener -- Required for Spring Session */
+
 @Configuration
 @WebListener
 public class ExtendedRequestContextListener extends RequestContextListener {

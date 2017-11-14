@@ -1,8 +1,12 @@
 package edu.csci4300.menu.controller;
 
 import edu.csci4300.menu.component.Cart;
+import edu.csci4300.menu.dao.CustomerRepository;
 import edu.csci4300.menu.dao.ItemRepository;
+import edu.csci4300.menu.dao.PurchaseRepository;
+import edu.csci4300.menu.pojo.Customer;
 import edu.csci4300.menu.pojo.Item;
+import edu.csci4300.menu.pojo.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +14,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/* Web Controller for basic endpoints */
+
 @Controller
 public class WebController {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private PurchaseRepository purchaseRepository;
 
     @Autowired
     private Cart cart;
@@ -44,6 +55,11 @@ public class WebController {
         return cart(model);
     }
 
+    @RequestMapping("/purchase")
+    public String purchase(Model model, @ModelAttribute Customer customer){
+
+        return "purchase";
+    }
 
     @GetMapping("/cart")
     public String cart(Model model){
@@ -52,7 +68,12 @@ public class WebController {
         return "cart";
     }
 
-
+    @GetMapping("/customers")
+    public String customers(Model model){
+        List<Customer> customerList = customerRepository.findAll();
+        model.addAttribute("customers", customerList);
+        return "customers";
+    }
 
 
     @RequestMapping("/")

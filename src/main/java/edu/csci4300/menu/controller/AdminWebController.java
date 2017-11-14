@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/* Web Controller for admin functions */
+
 @Controller
 @RequestMapping("/admin")
 public class AdminWebController {
