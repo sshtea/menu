@@ -36,23 +36,6 @@ public class MenuApplication {
 	@Bean
 	CommandLineRunner test(ItemRepository itemRepository, PurchaseRepository purchaseRepository, CustomerRepository customerRepository){
 	    return (args) -> {
-            Item item = new Item();
-            item.setName("Item1").setDescription("An Item").setPrice(154);
-            itemRepository.save(item);
-			item = new Item();
-			item.setName("Item2").setDescription("An Item for item 2").setPrice(20);
-
-			List<Item> itemList = itemRepository.findAll();
-
-			Customer customer = new Customer();
-			customer.setName("Test User 1");
-			customerRepository.save(customer);
-
-			Purchase purchase = new Purchase();
-			purchase.setItems(itemList);
-			purchase.setCustomer(customer);
-
-			purchaseRepository.save(purchase);
         };
     }
 }

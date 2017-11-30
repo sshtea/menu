@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Items</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Purchases</h1>
+
+<h2 th:text="${customer.name}"></h2>
+
+<h3>Purchase History</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Items</th>
+    </tr>
+    <tr th:each="purchase : ${purchases}">
+        <td th:text="${purchase.id}"></td>
+        <td th:text="${purchase.date}"></td>
+        <td>
+            <table>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Description</th>
+                </tr>
+                <tr th:each="item : ${purchase.items}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.description}"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

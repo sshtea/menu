@@ -4,6 +4,7 @@ import edu.csci4300.menu.pojo.Item;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 
 /* Cart Component scoped to the session -- Imported in the controller to track users cart */
 @Component
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@SessionScope
 public class Cart implements Serializable{
     private List<Item> itemList;
     public Cart(){

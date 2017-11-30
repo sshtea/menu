@@ -1,11 +1,15 @@
 package edu.csci4300.menu.pojo;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Component
 public class Customer implements Serializable{
     @Id
     @GeneratedValue
@@ -49,5 +53,15 @@ public class Customer implements Serializable{
     public Customer setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return name != null ? name.equals(customer.name) : customer.name == null;
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.BadAttributeValueExpException;
 import java.util.List;
 
 /* Web Controller for basic endpoints */
@@ -55,24 +56,47 @@ public class WebController {
         return cart(model);
     }
 
-    @RequestMapping("/purchase")
-    public String purchase(Model model, @ModelAttribute Customer customer){
-
-        return "purchase";
-    }
 
     @GetMapping("/cart")
     public String cart(Model model){
         List<Item> itemList = cart.getItemList();
         model.addAttribute("items", itemList);
+        List<Customer> customerList = customerRepository.findAll();
+        model.addAttribute("customers", customerList);
         return "cart";
     }
 
+    @PostMapping("/save")
+    public String saveCart(Model model, @ModelAttribute Customer customer, @RequestParam boolean existing){
+        /** Check if exsiting or new */
+        if(existing){
+            //If the customer exists, use the ID to get the full customer object
+            customer = customerRepository.findOne(customer.getId());
+        }else{
+            //Else clear out the customer id and save it to the repo (getting a new ID in the process)
+            customer.setId(null);
+            customerRepository.save(customer);
+        }
+
+        Purchase purchase = new Purchase();
+        purchase.setCustomer(customer);
+        purchase.setItems(cart.getItemList());
+        purchaseRepository.save(purchase);
+        return "error";
+    }
+
     @GetMapping("/customers")
-    public String customers(Model model){
-        List<Customer> customerList = customerRepository.findAll();
-        model.addAttribute("customers", customerList);
+    public String getCustomers(Model model){
+        model.addAttribute("customers",customerRepository.findAll());
         return "customers";
+    }
+
+    @GetMapping("/purchases")
+    public String getPurchases(Model model, @ModelAttribute Customer customer){
+        List<Purchase> purchases = customerRepository.findOne(customer.getId()).getPurchases();
+        model.addAttribute("customer", customer);
+        model.addAttribute("purchases", purchases);
+        return "purchases";
     }
 
 

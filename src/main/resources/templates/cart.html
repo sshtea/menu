@@ -24,6 +24,16 @@
     </tr>
 </table>
 
+<form action="#" th:action="@{/save}" method="post">
+    <span>New Customer</span><input type="radio" name="existing" value="false"/>
+    <input type="text" name="name" id="name"/>
+    <span>Existing Customer</span><input type="radio" name="existing" value="true"/>
+    <select id="id" name="id">
+        <option th:each="customer : ${customers}" th:value="${customer.id}" th:text="${customer.name}"></option>
+    </select>
+    <input type="submit" value="save"/>
+
+</form>
 
 </body>
 </html>

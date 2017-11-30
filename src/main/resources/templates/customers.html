@@ -10,9 +10,14 @@
 <table>
     <tr>
         <th>Name</th>
+        <th>Purchases</th>
     </tr>
     <tr th:each="customer : ${customers}">
-         <td th:text="${customer.name}"></td>
+        <form action="#" th:action="@{purchases}" method="get">
+            <input type="hidden" th:value="${customer.id}" name="id" id="id"/>
+            <td th:text="${customer.name}" name="name" id="name"></td>
+            <td><input type="submit" value="Go"/></td>
+        </form>
     </tr>
 </table>
 

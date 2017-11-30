@@ -1,6 +1,8 @@
 package edu.csci4300.menu.controller;
 
+import edu.csci4300.menu.dao.CustomerRepository;
 import edu.csci4300.menu.dao.ItemRepository;
+import edu.csci4300.menu.pojo.Customer;
 import edu.csci4300.menu.pojo.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ import java.util.List;
 public class AdminWebController {
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("/items")
     public String adminItems(Model model){
@@ -33,5 +38,12 @@ public class AdminWebController {
             itemRepository.save(item);
         }
         return adminItems(model);
+    }
+
+    @GetMapping("/customers")
+    public String customers(Model model){
+        List<Customer> customerList = customerRepository.findAll();
+        model.addAttribute("customers", customerList);
+        return "customers";
     }
 }
